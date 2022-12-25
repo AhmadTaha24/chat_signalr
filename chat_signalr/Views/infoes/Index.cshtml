@@ -1,0 +1,51 @@
+﻿@model IEnumerable<chat_signalr.Models.info>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.img_url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_seen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active_stat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.img_url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_seen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active_stat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

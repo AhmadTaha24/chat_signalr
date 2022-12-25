@@ -1,0 +1,1 @@
+﻿var connection = new SignalRHubConnectionBuilder().withUrl("/chathub");
