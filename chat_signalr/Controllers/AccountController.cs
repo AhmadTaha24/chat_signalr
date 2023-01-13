@@ -15,6 +15,7 @@ namespace chat_signalr.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private signalr_chatEntities db = new signalr_chatEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -55,18 +56,25 @@ namespace chat_signalr.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login([Bind(Include = "name,password,age,gender,img_url")] user user)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            bool exist = db.users.Any(x => x.name == user.name && x.password == user.password);
+            if (exist)
+            {
+                HttpCookie cookie = new HttpCookie("UserInfo", user.name);
+                
+                Response.Cookies.Add(cookie);
+                return Content("<img src=\"https://i.imgflip.com/3wf8n6.png\" alt=\"\">");
+            }
             return View();
         }
 
         //
         // POST: /Account/Login
-        [HttpPost]
+       /* [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(user model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -75,21 +83,22 @@ namespace chat_signalr.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.name, model.password, false, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+              
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
-        }
+        }*/
 
         //
         // GET: /Account/VerifyCode

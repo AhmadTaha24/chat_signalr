@@ -1,6 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security.Cookies;
+
 
 [assembly: OwinStartupAttribute(typeof(chat_signalr.Startup))]
 namespace chat_signalr
@@ -10,9 +13,15 @@ namespace chat_signalr
         public void Configuration(IAppBuilder app)
         {
             
-            app.MapSignalR();
-            ConfigureAuth(app.MapSignalR());
             
+           // ConfigureAuth(app);
+            app.MapSignalR();
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Login")
+            });
+            app.MapSignalR();
         }
        
     }

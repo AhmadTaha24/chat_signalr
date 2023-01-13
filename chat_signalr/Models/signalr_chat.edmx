@@ -15,6 +15,7 @@
           <Property Name="img_url" Type="nvarchar(max)" />
           <Property Name="active_stat" Type="bit" />
           <Property Name="sent_time" Type="datetime" />
+          <Property Name="receiver" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="info">
           <Key>
@@ -35,6 +36,7 @@
           <Property Name="age" Type="int" />
           <Property Name="gender" Type="nchar" MaxLength="10" />
           <Property Name="img_url" Type="nvarchar(max)" />
+          <Property Name="con_id" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_chat_users">
           <End Role="users" Type="Self.users" Multiplicity="1" />
@@ -88,6 +90,7 @@
           <Property Name="active_stat" Type="Boolean" />
           <NavigationProperty Name="user" Relationship="Self.FK_chat_users" FromRole="chat" ToRole="users" />
           <Property Name="sent_time" Type="DateTime" Precision="3" />
+          <Property Name="receiver" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="info">
           <Key>
@@ -111,6 +114,7 @@
           <Property Name="img_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="chats" Relationship="Self.FK_chat_users" FromRole="users" ToRole="chat" />
           <NavigationProperty Name="infoes" Relationship="Self.FK_info_users" FromRole="users" ToRole="info" />
+          <Property Name="con_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_chat_users">
           <End Role="users" Type="Self.user" Multiplicity="1" />
@@ -158,6 +162,7 @@
           <EntitySetMapping Name="chats">
             <EntityTypeMapping TypeName="signalr_chatModel.chat">
               <MappingFragment StoreEntitySet="chat">
+                <ScalarProperty Name="receiver" ColumnName="receiver" />
                 <ScalarProperty Name="sent_time" ColumnName="sent_time" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -181,6 +186,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="signalr_chatModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="con_id" ColumnName="con_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="age" ColumnName="age" />

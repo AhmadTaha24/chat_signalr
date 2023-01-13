@@ -7,7 +7,7 @@
       <Diagram DiagramId="30565105cae14723bf7b996cf50a54e3" Name="Diagram1">
         <EntityTypeShape EntityType="signalr_chatModel.chat" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="signalr_chatModel.info" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="signalr_chatModel.user" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="signalr_chatModel.user" Width="1.5" PointX="0.5" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="signalr_chatModel.FK_chat_users" ManuallyRouted="false" />
         <AssociationConnector Association="signalr_chatModel.FK_info_users" ManuallyRouted="false" />
       </Diagram>

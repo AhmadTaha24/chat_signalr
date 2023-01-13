@@ -1,0 +1,45 @@
+﻿@model  dynamic
+@{
+    //ViewBag.Title = "test";
+    Layout = "~/Views/Home/_LayoutPage1.cshtml";
+}
+@section receiver_name{@Model.name}
+<h2>@Model.name</h2>
+<ul class="chat-box chatContainerScroll" id="discussion">
+    
+    @foreach (var chat in Model.CurrentChat)
+    {
+        if (chat.name == Model.name)
+        {
+            string position = "chat-left";
+            <li class=@position>
+                <div class="chat-avatar">
+                    <img src=@chat.img_url alt="Retail Admin">
+                    <div class="chat-name">@chat.name</div>
+                </div>
+                <div class="chat-text">
+                    @chat.message
+                </div>
+                <div class="chat-hour">@chat.sent_time.ToString("hh:mm tt")<span class="fa fa-check-circle"></span></div>
+            </li>
+        }
+        else
+        {
+            string position = "chat-right";
+            <li class=@position>
+                <div class="chat-hour">@chat.sent_time.ToString("hh:mm tt")<span class="fa fa-check-circle"></span></div>
+                <div class="chat-text">
+                    @chat.message
+                </div>
+                <div class="chat-avatar">
+                    <img src=@chat.img_url alt="Retail Admin">
+                    <div class="chat-name">@chat.name</div>
+                </div>
+
+
+            </li>
+        }
+    }
+
+    }
+</ul>

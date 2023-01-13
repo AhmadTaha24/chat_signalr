@@ -249,6 +249,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\chatsController.cs" />
     <Compile Include="Controllers\infoesController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Models\chat.cs">
       <DependentUpon>signalr_chat.tt</DependentUpon>
@@ -379,6 +380,11 @@
     <Content Include="Views\chats\Details.cshtml" />
     <Content Include="Views\chats\Edit.cshtml" />
     <Content Include="Views\chats\Index.cshtml" />
+    <Content Include="Views\Home\_LayoutPage1.cshtml" />
+    <Content Include="Views\Test\View.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\user2.cshtml" />
+    <Content Include="Views\Test\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using chat_signalr.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace chat_signalr.Controllers
 {
@@ -50,6 +52,13 @@ namespace chat_signalr.Controllers
         {
             if (ModelState.IsValid)
             {
+                //
+                user usee = new user();
+                var userStore = new UserStore<IdentityUser>(db);
+                var manager = new UserManager<IdentityUser>(userStore);
+                var uuser = new IdentityUser() { UserName = user.name };
+                IdentityResult result = manager.Create(uuser, user.password);
+                //
                 db.users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");

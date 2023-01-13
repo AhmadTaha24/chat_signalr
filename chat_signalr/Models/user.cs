@@ -26,6 +26,7 @@ namespace chat_signalr.Models
         public Nullable<int> age { get; set; }
         public string gender { get; set; }
         public string img_url { get; set; }
+        public string con_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chat> chats { get; set; }

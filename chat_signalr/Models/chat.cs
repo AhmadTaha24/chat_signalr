@@ -20,6 +20,7 @@ namespace chat_signalr.Models
         public string img_url { get; set; }
         public Nullable<bool> active_stat { get; set; }
         public Nullable<System.DateTime> sent_time { get; set; }
+        public string receiver { get; set; }
     
         public virtual user user { get; set; }
     }

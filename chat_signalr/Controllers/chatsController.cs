@@ -34,6 +34,7 @@ namespace chat_signalr.Controllers
                 return HttpNotFound();
             }
             return View(chat);
+            
         }
 
         // GET: chats/Create
